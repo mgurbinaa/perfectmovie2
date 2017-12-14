@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>PerfectMovie | Discover your movie</title>
+		<meta charset="utf-8" content="width = device-width, user-scalable=no">
+		<link rel="stylesheet" href="public/css/index.css">
+		<link rel="stylesheet" href="public/css/main.css">
+	</head>
+	<body Scroll="no">
+		<div class="left-col">
+			<div class="logo">
+				<img src="public/img/logo_large.png" alt="PerfectMovie">
+			</div>
+			<div class="loginButton">
+				<fb:login-button 
+				  	scope="public_profile,email"
+				  	onlogin="checkLoginState();">
+				</fb:login-button>
+			</div>
+		</div>
+		<div class="right-col" id="posters">
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="public/js/index.js" onload="getPosters()"></script>
+	<!--<script type="text/javascript" src="public/js/fblogin.js"></script>-->
+</html>
