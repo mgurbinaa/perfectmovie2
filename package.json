@@ -1,0 +1,19 @@
+{
+  "name": "perfectmovie",
+  "version": "1.0.0",
+  "description": "Sistema de recomendación de películas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mkurbinaa/perfectmovie.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkurbinaa/perfectmovie/issues"
+  },
+  "homepage": "https://github.com/mkurbinaa/perfectmovie#readme"
+}
