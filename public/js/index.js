@@ -25,3 +25,7 @@ function load(){
 	}
 	getPosters();
 }
+
+function discover(){
+	location.assign('http://'+location.host+'/perfectmovie2/discover');
+}
