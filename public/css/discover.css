@@ -57,6 +57,7 @@ body{
 			border-radius: 10px 10px 0px 0px;
 			height: auto;
 			width: 100%; 
+			box-shadow: 
 		}
 
 
@@ -70,6 +71,7 @@ body{
 			padding-top: 3px;
 			padding-bottom: 4px;
 			border: 1px solid #AA2E85;
+			border-top: none;
 			cursor: pointer;
 		}
 
@@ -110,6 +112,7 @@ body{
 	.titulo{
 		height: 50px;
 		width: 100%;
+		margin-top: -10vh;
 		background: linear-gradient(to right, #622124, #323232);
 	}
 
@@ -120,7 +123,7 @@ body{
 		}
 
 		.posterLiked{
-			width: 150px;
+			width: 130px;
 			height: auto;
 			float: left;
 			margin-left: 15px;
