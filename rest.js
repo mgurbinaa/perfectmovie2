@@ -40,7 +40,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director;";
 			connection.query(query, function(err, rows){
 				if(err){
-					query = "SELECT DISTINCT title, image, idMovie, director, genre, year FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"'));";
+					query = "SELECT DISTINCT title, image, idMovie, director, genre, year FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) ORDER BY RAND();";
 					connection.query(query, function(err, rows){
 						if(err){
 							console.log(err);
@@ -55,7 +55,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 						}
 					});
 				}else{
-					query = "SELECT DISTINCT title, image, idMovie, director, genre, year FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND director LIKE '%"+rows.name+"%';";
+					query = "SELECT DISTINCT title, image, idMovie, director, genre, year FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND director LIKE '%"+rows.name+"%' ORDER BY RAND();";
 					connection.query(query, function(err, rows){
 						if(err){
 							console.log(err);
@@ -72,10 +72,10 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 				}
 			})
 		}else{
-			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director";
+			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director ORDER BY RAND()";
 			connection.query(query, function(err, rows){
 				if(err){
-					query = "SELECT DISTINCT title, image, idMovie, director, genre, year FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND genre LIKE '%"+fgenre+"%';";
+					query = "SELECT DISTINCT title, image, idMovie, director, genre, year FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND genre LIKE '%"+fgenre+"%' ORDER BY RAND();";
 					connection.query(query, function(err, rows){
 						if(err){
 							console.log(err);
