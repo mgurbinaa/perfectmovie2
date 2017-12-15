@@ -13,7 +13,15 @@ function getPosters(){
 			}
 		}
 	};
-	data.open('POST', 'http://perfectmovie.me/perfectmovie2/getPosters');
+	data.open('POST', 'http://localhost:3000/perfectmovie2/getPosters');
 	data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	data.send();
+}
+
+function load(){
+	var user = localStorage.getItem('user');
+	if(user != null){
+		location.assign('http://'+location.host+'/perfectmovie2/discover');
+	}
+	getPosters();
 }

@@ -33,9 +33,26 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			}
 		})
 	})
+	router.post("/PerfectMovie2/getDiscover", function(req, res){
+		var user = req.body.u;
+		var query = "SELECT * FROM movies WHERE idMovie NOT LIKE (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"'));";
+		connection.query(query, function(err, rows){
+			if(err){
+				console.log(err);
+				res.json({err: true});
+			}else{
+				if(Array.isArray(rows)){
+					res.json(rows);
+				}else{
+					console.log(rows);
+					res.json({err:true});
+				}
+			}
+		})
+	})
 	router.post("/PerfectMovie2/getLikes", function(req, res){
 		var user = req.body.u;
-		var query = "SELECT * FROM movies WHERE idMovie = (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = "+user+"))";
+		var query = "SELECT * FROM movies WHERE idMovie = (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"'))";
 		connection.query(query, function(err, rows){
 			if(err){
 				console.log(err);
