@@ -18,7 +18,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 	});
 
 	router.post("/PerfectMovie2/getPosters", function(req, res){
-		var query = "SELECT * FROM movies";
+		var query = "SELECT * FROM movies ORDER BY RAND()";
 		connection.query(query, function(err, rows){
 			if(err){
 				console.log(err);
