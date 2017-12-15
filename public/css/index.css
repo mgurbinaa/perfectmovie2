@@ -8,6 +8,12 @@ body{
 	float: left;
 }
 
+	.fb-login-button{
+		margin-top: 35%;
+		margin-left: 10%;
+		color: white;
+	}
+
 	.logo{
 		height: 90px;
 		width: auto;
@@ -20,20 +26,13 @@ body{
 			width: auto;
 		}
 
-		.loginButton{
-			height: 10%;
-			width: 300px;
-			background-color: white;
-			margin-top: 35%;
-			margin-left: 10%;
-		}
-
 
 .right-col{
 	width: 60%;
 	float: left;
 	height: 100%;
 	overflow-y: scroll;
+	padding: 10px;
 }
 
 	.poster{
@@ -44,8 +43,9 @@ body{
 		margin-top: 10px;
 	}
 
-	.poster>img{
-		border-radius: 9px;
-		height: 100%;
-		width: auto;
-	}
+		.poster>img{
+			border-radius: 9px;
+			height: 100%;
+			width: auto;
+		}
+

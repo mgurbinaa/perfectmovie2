@@ -1,0 +1,109 @@
+body{
+	background-color: rgba(225,225,225,.7);
+}
+
+.navbar{
+	position: relative;
+	width: 100%;
+	height: 10vh;
+	background: linear-gradient(to left, rgb(50,50,50), #BB0009);
+}
+
+	.logo{
+		height: 100%;
+		float: left;
+		margin-left: 5px;
+	}
+
+		.logo>img{
+			height: 100%;
+			width: auto;
+		}
+
+	.navbar>input{
+		margin-left: 300px;
+		margin-top: 10px;
+		height: 60%;
+		width: 30%;
+		border-radius: 20px;
+		position: relative;
+		float: left;
+		outline: none;
+		padding-left: 15px;
+		padding-right: 15px;
+		font-size: 3vh;
+	}
+
+	.navbar>button{
+		
+	}
+
+.posters{
+	padding: 10px;
+	width: 75%;
+	height: 100%;
+}
+
+	.posterLiked{
+		width: 150px;
+		height: auto;
+		float: left;
+		margin-left: 15px;
+		margin-top: 10px;
+	}
+
+	.poster{
+		height: 320px;
+		width: 150px;
+		float: left;
+		margin-left: 15px;
+		margin-top: 10px;
+	}
+
+		.imgPoster{
+			border-radius: 10px 10px 0px 0px;
+			height: auto;
+			width: 100%; 
+		}
+
+
+		.like{
+			border-radius: 0px 0px 10px 10px;
+			width: 100%;
+			height: auto;
+			color: #AA2E85;
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-top: 3px;
+			padding-bottom: 4px;
+			border: 1px solid #AA2E85;
+			cursor: pointer;
+		}
+
+			.like>img{
+				width: 15%;
+				height: auto;
+			}
+
+
+			.textLike{
+				font-size: 3vh;
+				float: right;
+				margin-right: 20%;
+			}
+
+		.title{
+			font-size: 1.7vh;
+			color: rgba(0,0,0,.9);
+			font-weight: bolder;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+
+		.metadata{
+			font-size: 1.6vh;
+			color: rgba(0,0,0,.75);
+			font-weight: normal;
+			margin-left: 5px;
+			margin-right: 5px;
+		}

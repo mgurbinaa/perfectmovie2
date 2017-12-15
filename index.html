@@ -11,10 +11,8 @@
 				<img src="public/img/logo_large.png" alt="PerfectMovie">
 			</div>
 			<div class="loginButton">
-				<fb:login-button 
-				  	scope="public_profile,email"
-				  	onlogin="checkLoginState();">
-				</fb:login-button>
+				<div id="fb-root"></div>
+				<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="true" data-auto-logout-link="false" data-use-continue-as="true"></div>
 			</div>
 		</div>
 		<div class="right-col" id="posters">
@@ -22,5 +20,5 @@
 		</div>
 	</body>
 	<script type="text/javascript" src="public/js/index.js" onload="getPosters()"></script>
-	<!--<script type="text/javascript" src="public/js/fblogin.js"></script>-->
+	<script type="text/javascript" src="public/js/fbSdk.js"></script>
 </html>
