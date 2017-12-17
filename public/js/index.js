@@ -13,7 +13,7 @@ function getPosters(){
 			}
 		}
 	};
-	data.open('POST', 'http://localhost:3000/perfectmovie2/getPosters');
+	data.open('POST', 'http://'+location.host+'/perfectmovie2/getPosters');
 	data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	data.send();
 }
