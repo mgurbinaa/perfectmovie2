@@ -14,6 +14,16 @@ function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
+  
+  FB.login(function(response){
+  alert(response.name);
+  if(response.status === 'connected'){
+    localStorage.setItem('user', response.mail);
+    localStorage.setItem('name', response.name)
+  }else{
+
+  }
+});
 }
 
 (function(d, s, id) {
@@ -24,15 +34,7 @@ function checkLoginState() {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-FB.login(function(response){
-  alert(response.name);
-  if(response.status === 'connected'){
-    localStorage.setItem('user', response.mail);
-    localStorage.setItem('name', response.name)
-  }else{
 
-  }
-});
 
 function onButtonClick() {
   // Add this to a button's onclick handler
