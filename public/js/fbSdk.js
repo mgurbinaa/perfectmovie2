@@ -25,6 +25,7 @@ function checkLoginState() {
 }(document, 'script', 'facebook-jssdk'));
 
 FB.login(function(response){
+  alert(response.name);
   if(response.status === 'connected'){
     localStorage.setItem('user', response.mail);
     localStorage.setItem('name', response.name)

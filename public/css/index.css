@@ -1,5 +1,5 @@
 body{
-	background: linear-gradient(to right, rgb(0,0,0), rgb(226, 7, 18));
+	background: linear-gradient(to left, rgb(0,0,0), rgb(226, 7, 18));
 	overflow: hidden;
 }
 .left-col{
