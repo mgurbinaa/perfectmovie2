@@ -38,7 +38,7 @@ function dataRequest(){
 FB.api('/me', 
         {fields: "email, name"}, 
         function(response) {
-          localStorage.setItem('user', response.mail);
+          localStorage.setItem('user', response.email);
           localStorage.setItem('name', response.name);
         }
     );
