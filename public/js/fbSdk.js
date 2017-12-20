@@ -37,7 +37,7 @@ function checkLoginState() {
 
 function dataRequest(){
 FB.api('/me', 
-        {fields: "id,about,age_range,picture,bio,birthday,context,email,first_name,gender,hometown,link,location,middle_name,name,timezone,website,work"}, 
+        {fields: "email, name"}, 
         function(response) {
           localStorage.setItem('user', response.mail);
           localStorage.setItem('name', response.name);
