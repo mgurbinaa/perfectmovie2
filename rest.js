@@ -129,7 +129,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 	router.post("/login", function(req, res){
 		var user = req.body.u;
 		var name = req.body.n;
-		var query = "SELECT * FROM users WHERE userId = '"+user+"';";
+		var query = "SELECT * FROM users WHERE id = '"+user+"';";
 		connection.query(query, function(err, rows){
 			if(err){
 				console.log(err);
