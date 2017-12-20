@@ -40,7 +40,7 @@ FB.api('/me',
         function(response) {
           localStorage.setItem('user', response.email);
           localStorage.setItem('name', response.name);
-          window.location('http://'+location.host+'/discover');
+          entrar();
         }
     );
 }

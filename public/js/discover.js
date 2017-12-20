@@ -28,26 +28,6 @@ function getPosters(){
 	data.send('u='+user+'&g='+fg);
 }
 
-function login(){
-	var user = localStorage.getItem('user');
-    var name = localStorage.getItem('name');
-    var data = new XMLHttpRequest();
-    data.onreadystatechange = function(){
-      	if(this.status == 200 && this.readyState == 4){
-          	alert("Entró al if");
-          	var datos = JSON.parse(this.responseText);
-          	if(!datos.err){
-            	alert("No hubo error");
-          	}
-        }else{
-          	alert("No entra al if");
-        }
-    };
-    data.open('POST', 'http://'+location.host+'/login');
-    data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    data.send('u='+user+'&n='+name);
-}
-
 function getLikes(){
 	var div = document.getElementById('likes');
 	var user = localStorage.getItem('user');
