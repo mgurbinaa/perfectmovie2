@@ -33,10 +33,8 @@ function entrar(){
 	    var data = new XMLHttpRequest();
 	    data.onreadystatechange = function(){
 	      	if(this.status == 200 && this.readyState == 4){
-	          	alert("Entró al if");
 	          	var datos = JSON.parse(this.responseText);
 	          	if(!datos.err){
-	            	alert("No hubo error");
 	            	location.assign('http://'+location.host+'/discover')
 	          	}
 	        }
