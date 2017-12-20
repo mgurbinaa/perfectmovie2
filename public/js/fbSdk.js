@@ -40,21 +40,7 @@ FB.api('/me',
         function(response) {
           localStorage.setItem('user', response.email);
           localStorage.setItem('name', response.name);
-          var user = localStorage.getItem('user');
-          var name = localStorage.getItem('name');
-          alert('http://'+location.host+'/discover?u='+user+'&n='+name);
-          /*var data = new XMLHttpRequest();
-          data.onreadystatechange = function(){
-            if(this.status == 200 && this.readyState == 4){
-              var datos = JSON.parse(this.responseText);
-              if(!datos.err){
-                console.log('http://'+location.host+'/discover');
-              }
-            }
-          };
-          data.open('POST', 'http://'+location.host+'/login');
-          data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-          data.send('u='+user+'&n='+name);*/
+          window.location('http://'+location.host+'/discover');
         }
     );
 }
