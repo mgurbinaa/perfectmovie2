@@ -6,7 +6,7 @@ function getPosters(){
 	var fg = localStorage.getItem('fg');
 	var data = new XMLHttpRequest();
 	data.onreadystatechange = function(){
-		if(this.status == 200 && this.readyState == 4){
+		if((this.status == 200 || this.status == 304) && this.readyState == 4){
 			var datos = JSON.parse(this.responseText);
 			if(!datos.err){
 				for(var i=0; i<50; i++){
@@ -34,7 +34,7 @@ function getLikes(){
 	genres = [];
 	var data = new XMLHttpRequest();
 	data.onreadystatechange = function(){
-		if(this.status == 200 && this.readyState == 4){
+		if((this.status == 200 || this.status == 304) && this.readyState == 4){
 			var datos = JSON.parse(this.responseText);
 			if(!datos.err){
 				for(var i=0; i<datos.length; i++){
@@ -92,7 +92,7 @@ function like(movie){
 	var user = localStorage.getItem('user');
 	var data = new XMLHttpRequest();
 	data.onreadystatechange = function(){
-		if(this.status == 200 && this.readyState == 4){
+		if((this.status == 200 || this.status == 304) && this.readyState == 4){
 			var datos = JSON.parse(this.responseText);
 			if(!datos.err){
 				window.location.reload(false);
