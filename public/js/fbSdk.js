@@ -40,11 +40,27 @@ FB.api('/me',
         function(response) {
           localStorage.setItem('user', response.email);
           localStorage.setItem('name', response.name);
+          entrar();
         }
     );
 }
 
-
+function entrar(){
+  var user = localStorage.getItem('user');
+  var name = localStorage.getItem('name');
+  var data = new XMLHttpRequest();
+  data.onreadystatechange = function(){
+    if(this.status == 200 && this.readyState == 4){
+      var datos = JSON.parse(this.responseText);
+      if(!datos.err){
+        window.location('http://'+location.host+'/discover');
+      }
+    }
+  };
+  data.open('POST', 'http://'+location.host+'/login');
+  data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  data.send('u='+user+'&n='+name);
+}
 
 
 function onButtonClick() {
