@@ -11,7 +11,7 @@ function getPosters(){
 			if(!datos.err){
 				for(var i=0; i<50; i++){
 					var poster = '<div class="poster">';
-					//poster += "<img class='imgPoster' src='"+datos[i].image+"'>";
+					poster += "<img class='imgPoster' src='"+datos[i].image+"'>";
 					poster += "<div class='like' href='#' id='"+datos[i].idMovie+"' onclick='like("+datos[i].idMovie+")'>";
 					poster += "<img src='public/img/liked.png'><p class='textLike'>Like</p></div>";
 					poster += "<p class='title'>"+datos[i].title+"</p>";
