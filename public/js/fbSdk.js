@@ -23,8 +23,7 @@ function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
     if(response.status === 'connected'){
-      localStorage.setItem('user', response.mail);
-      localStorage.setItem('name', response.name);
+      console.log(response)
     }
   });
 }
