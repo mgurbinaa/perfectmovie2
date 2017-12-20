@@ -13,7 +13,7 @@ function getPosters(){
 			}
 		}
 	};
-	data.open('POST', 'http://'+location.host+'/perfectmovie2/getPosters');
+	data.open('POST', 'http://'+location.host+'/getPosters');
 	data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	data.send();
 }
@@ -21,11 +21,11 @@ function getPosters(){
 function load(){
 	var user = localStorage.getItem('user');
 	if(user != null){
-		location.assign('http://'+location.host+'/perfectmovie2/discover');
+		location.assign('http://'+location.host+'/discover');
 	}
 	getPosters();
 }
 
 function discover(){
-	location.assign('http://'+location.host+'/perfectmovie2/discover');
+	location.assign('http://'+location.host+'/discover');
 }

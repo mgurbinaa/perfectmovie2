@@ -23,7 +23,7 @@ function getPosters(){
 			}
 		}
 	};
-	data.open('POST', 'http://'+location.host+'/perfectmovie2/getDiscover');
+	data.open('POST', 'http://'+location.host+'/getDiscover');
 	data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	data.send('u='+user+'&g='+fg);
 }
@@ -51,7 +51,7 @@ function getLikes(){
 			getFavGenre();
 		}
 	};
-	data.open('POST', 'http://'+location.host+'/perfectmovie2/getLikes');
+	data.open('POST', 'http://'+location.host+'/getLikes');
 	data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	data.send('u='+user);
 }
@@ -81,7 +81,7 @@ function getFavGenre(){
 function load(){
 	var user = localStorage.getItem('user');
 	if(user == null){
-		location.assign('http://'+location.host+'/perfectmovie2');
+		location.assign('http://'+location.host+'');
 	}
 	getPosters();
 	getLikes();
@@ -99,7 +99,7 @@ function like(movie){
 			}
 		}
 	};
-	data.open('POST', 'http://'+location.host+'/perfectmovie2/like');
+	data.open('POST', 'http://'+location.host+'/like');
 	data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	data.send('u='+user+'&m='+movie);
 }

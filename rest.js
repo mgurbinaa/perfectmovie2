@@ -8,16 +8,16 @@ function REST_ROUTER(router, connection, md5) {
 }
 
 REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
-	router.get('/PerfectMovie2', function(req, res){
+	router.get('', function(req, res){
 		router.use(express.static(__dirname));
 		res.sendFile(path.normalize(__dirname + '/index.html'));
 	});
-	router.get('/PerfectMovie2/discover', function(req, res){
+	router.get('/discover', function(req, res){
 		router.use(express.static(__dirname + '../../'));
 		res.sendFile(path.normalize(__dirname + '/discover.html'));
 	});
 
-	router.post("/PerfectMovie2/getPosters", function(req, res){
+	router.post("/getPosters", function(req, res){
 		var query = "SELECT * FROM movies ORDER BY RAND()";
 		connection.query(query, function(err, rows){
 			if(err){
@@ -33,7 +33,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			}
 		});
 	});
-	router.post("/PerfectMovie2/getDiscover", function(req, res){
+	router.post("/getDiscover", function(req, res){
 		var user = req.body.u;
 		var fgenre = req.body.g;
 		if(fgenre==null){
@@ -109,7 +109,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 		}
 		
 	});
-	router.post("/PerfectMovie2/getLikes", function(req, res){
+	router.post("/getLikes", function(req, res){
 		var user = req.body.u;
 		var query = "SELECT * FROM movies WHERE idMovie IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"'))";
 		connection.query(query, function(err, rows){
@@ -126,7 +126,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			}
 		});
 	});
-	router.post("/PerfectMovie2/login", function(req, res){
+	router.post("/login", function(req, res){
 		var user = req.body.u;
 		var name = req.body.n;
 		var query = "SELECT * FROM users WHERE userId = "+user;
@@ -151,7 +151,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			}
 		});
 	});
-	router.post("/PerfectMovie2/like", function(req, res){
+	router.post("/like", function(req, res){
 		var user = req.body.u;
 		var movie = req.body.m;
 		console.log(user);
