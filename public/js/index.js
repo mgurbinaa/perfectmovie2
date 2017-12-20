@@ -39,8 +39,6 @@ function entrar(){
 	            	alert("No hubo error");
 	            	location.assign('http://'+location.host+'/discover')
 	          	}
-	        }else{
-	          	alert("No entra al if");
 	        }
 	    };
 	    data.open('POST', 'http://'+location.host+'/login');
