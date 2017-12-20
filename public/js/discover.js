@@ -83,7 +83,6 @@ function load(){
 	if(user == null){
 		location.assign('http://'+location.host+'');
 	}
-	login();
 	getPosters();
 	getLikes();
 }

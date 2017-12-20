@@ -129,13 +129,13 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 	router.post("/login", function(req, res){
 		var user = req.body.u;
 		var name = req.body.n;
-		var query = "SELECT * FROM users WHERE id = '"+user+"';";
+		var query = "SELECT count(*) as user FROM users WHERE id = '"+user+"';";
 		connection.query(query, function(err, rows){
 			if(err){
 				console.log(err);
 				res.json({err: true});
 			}else{
-				if(Array.isArray(rows)){
+				if(res.user == 1){
 					res.json({login: true});
 				}else{
 					var query = "INSERT INTO users(id, name) VALUES('"+user+"', '"+name+"');";
