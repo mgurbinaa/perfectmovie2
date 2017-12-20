@@ -22,8 +22,10 @@
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
-    if(response.status === 'connected'){
-      console.log(response)
+    if(response.status == 'connected'){
+      console.log(response);
+      localStorage.setItem('user', response.mail);
+      localStorage.setItem('name', response.name);
     }
   });
 }
@@ -33,7 +35,7 @@ FB.login(function(response){
   alert(response.name);
   if(response.status === 'connected'){
     localStorage.setItem('user', response.mail);
-    localStorage.setItem('name', response.name)
+    localStorage.setItem('name', response.name);
   }else{
 
   }
