@@ -23,23 +23,30 @@ function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
     if(response.status == 'connected'){
-      console.log(response);
-      localStorage.setItem('user', response.mail);
-      localStorage.setItem('name', response.name);
+      dataRequest();
+    }
+    else{
+      FB.login(function(response){
+        if(response.status === 'connected'){
+          dataRequest();
+        }
+      });
     }
   });
 }
 
+function dataRequest(){
+FB.api('/me', 
+        {fields: "id,about,age_range,picture,bio,birthday,context,email,first_name,gender,hometown,link,location,middle_name,name,timezone,website,work"}, 
+        function(response) {
+          localStorage.setItem('user', response.mail);
+          localStorage.setItem('name', response.name);
+        }
+    );
+}
 
-FB.login(function(response){
-  alert(response.name);
-  if(response.status === 'connected'){
-    localStorage.setItem('user', response.mail);
-    localStorage.setItem('name', response.name);
-  }else{
 
-  }
-});
+
 
 function onButtonClick() {
   // Add this to a button's onclick handler
