@@ -10,6 +10,7 @@ function getPosters(){
 			var datos = JSON.parse(this.responseText);
 			if(!datos.err){
 				for(var i=0; i<50; i++){
+					console.log(datos);
 					var poster = '<div class="poster">';
 					poster += "<img class='imgPoster' src='"+datos[i].image+"'>";
 					poster += "<div class='like' href='#' id='"+datos[i].idMovie+"' onclick='like("+datos[i].idMovie+")'>";
