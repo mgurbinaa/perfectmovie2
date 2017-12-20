@@ -45,8 +45,8 @@ REST.prototype.configureExpress = function(connection) {
 }
 
 REST.prototype.startServer = function() {
-	app.listen(3000, function() {
-		console.log("Listening on port: 3000");
+	app.listen(80, function() {
+		console.log("Listening on port: 80");
 	});
 }
 
