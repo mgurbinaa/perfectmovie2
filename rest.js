@@ -135,7 +135,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 				console.log(err);
 				res.json({err: true});
 			}else{
-				if(res.user == 1){
+				if(rows.user == 1){
 					res.json({login: true});
 				}else{
 					var query = "INSERT INTO users(id, name) VALUES('"+user+"', '"+name+"');";

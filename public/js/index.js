@@ -21,7 +21,7 @@ function getPosters(){
 function load(){
 	var user = localStorage.getItem('user');
 	if(user != null){
-		login();
+		entrar();
 	}
 	getPosters();
 }
