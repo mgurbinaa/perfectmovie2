@@ -41,36 +41,25 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			var query = "SELECT COUNT(*) as counted FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
 			connection.query(query, function(err, rows){
 				if(err){
-					console.log("Error al contar likes");
-					console.log(err);
 					res.json(err);
 				}else{
-					console.log(rows[0].counted+'[0]conteo likes');
-					console.log(rows.counted+'rows conteo likes');
 					if(rows[0].counted == 0){
 						var query = "SELECT * FROM movies ORDER BY RAND()";
 						connection.query(query, function(err, rows){
 							if(err){
-								console.log("Error al obtener TODAS las peliculas");
-								console.log(err);
 								res.json(err);
 							}else{
-								console.log("Obtiene TODAS las películas");
 								res.json(rows);
 							}
 						});
 					}else{
-						console.log("Sí hay likes");
 						query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director;";
 						connection.query(query, function(err, rows){
 							query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) OR director LIKE '%"+rows[0].name+"%' ORDER BY RAND();";
 							connection.query(query, function(err, rows){
 								if(err){
-									console.log("Error al obtener peliculas con likes");
-									console.log(err);
 									res.json(err);
 								}else{
-									console.log("Obtiene las películas sólo con likes");
 									res.json(rows);	
 								}
 							});
@@ -82,9 +71,6 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			console.log("fg not null");
 			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director ORDER BY RAND()";
 			connection.query(query, function(err, rows){
-				console.log(rows);
-				console.log(rows[0].counted+'[0]f');
-				console.log(rows.counted+'rowsf');
 				if(rows[0].length>0){
 					query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND (genre LIKE '%"+fgenre+"%' OR director LIKE '%"+rows[0].name+"%');";
 					connection.query(query, function(err, rows){
