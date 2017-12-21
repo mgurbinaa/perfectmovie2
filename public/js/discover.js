@@ -49,6 +49,7 @@ function getLikes(){
 					div.innerHTML += poster;
 				}
 			}
+			console.log("antes de entrar a la funcion");
 			getFavGenre();
 		}
 	};
@@ -58,9 +59,12 @@ function getLikes(){
 }
 
 function getFavGenre(){
+	console.log("entra a la funcion");
 	if(genres.length == 0){
+		console.log("regresa null");
         return null;
 	}
+	console.log("Busca el mejor");
     var modeMap = {};
     var maxEl = genres[0], maxCount = 1;
     for(var i = 0; i < genres.length; i++)
