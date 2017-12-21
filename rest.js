@@ -35,8 +35,14 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 	});
 	router.post("/getDiscover", function(req, res){
 		var user = req.body.u;
-		var fgenre = req.body.g;
-		if(fgenre=='null'){
+		var fgen = req.body.g;
+		var year = req.body.y;
+		var rate = req.body.r;
+		var y1 = parseInt(year - 5);
+		var y2 = parseInt(year + 5);
+		var r1 = parseInt(rate - 10);
+		var r2 = parseInt(rate + 10);
+		if(fgen=='null'){
 			console.log("fg null");
 			var query = "SELECT COUNT(*) as counted FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
 			connection.query(query, function(err, rows){
@@ -55,7 +61,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 					}else{
 						query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director;";
 						connection.query(query, function(err, rows){
-							query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) OR director LIKE '%"+rows[0].name+"%' ORDER BY RAND();";
+							query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie (NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND (year BETWEEN "+y1+" AND "+y2+" OR rating BETWEEN "+r1+" AND "+r2+") OR director LIKE '%"+rows[0].name+"%' ORDER BY rating DESC;";
 							connection.query(query, function(err, rows){
 								if(err){
 									res.json(err);
@@ -69,10 +75,10 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			});
 		}else{
 			console.log("fg not null");
-			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director ORDER BY RAND()";
+			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director;";
 			connection.query(query, function(err, rows){
 				if(rows[0].length>0){
-					query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND (genre LIKE '%"+fgenre+"%' OR director LIKE '%"+rows[0].name+"%');";
+					query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND ((year BETWEEN "+y1+" AND "+y2+" OR rating BETWEEN "+r1+" AND "+r2+") AND (genre LIKE '%"+fgen+"%' OR director LIKE '%"+rows[0].name+"%')) ORDER BY rating DESC;";
 					connection.query(query, function(err, rows){
 						if(err){
 							res.json(err);
@@ -81,7 +87,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 						}
 					});
 				}else{
-					query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND genre LIKE '%"+fgenre+"%' ORDER BY RAND();";
+					query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND ((year BETWEEN "+y1+" AND "+y2+" OR rating BETWEEN "+r1+" AND "+r2+") AND genre LIKE '%"+fgen+"%') ORDER BY rating DESC;";
 					connection.query(query, function(err, rows){
 						if(err){
 							res.json(err);

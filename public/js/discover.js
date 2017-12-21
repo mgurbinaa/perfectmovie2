@@ -7,6 +7,7 @@ function getPosters(){
 	var div = document.getElementById('posters');
 	var fg = localStorage.getItem('fg');
 	var r = localStorage.getItem('r');
+	var y = localStorage.getItem('y');
 	var data = new XMLHttpRequest();
 	data.onreadystatechange = function(){
 		if((this.status == 200 || this.status == 304) && this.readyState == 4){
@@ -29,7 +30,7 @@ function getPosters(){
 	};
 	data.open('POST', 'http://'+location.host+'/getDiscover');
 	data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	data.send('u='+user+'&g='+fg+'&r='+r);
+	data.send('u='+user+'&g='+fg+'&r='+r+'&y='+y);
 }
 
 function getLikes(){
