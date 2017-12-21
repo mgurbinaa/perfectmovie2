@@ -39,7 +39,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 		if(fgenre==null){
 			var query = "SELECT COUNT(*) FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
 			connection.query(query, function(err, rows){
-				if(rows.count == '0'){
+				if(rows[0].count == 0){
 					var query = "SELECT * FROM movies ORDER BY RAND()";
 					connection.query(query, function(err, rows){
 						if(err){
@@ -55,32 +55,31 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 						}
 					});
 				}else{
-
+					query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director;";
+					connection.query(query, function(err, rows){
+						query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND director LIKE '%"+rows[0].name+"%' ORDER BY RAND();";
+						connection.query(query, function(err, rows){
+							if(err){
+								console.log(err);
+								res.json({err: true});
+							}else{
+								if(Array.isArray(rows)){
+									res.json(rows);
+								}else{
+									console.log(rows);
+									res.json({err:true});
+								}
+							}
+						});
+					})
 				}
 			});
-			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director;";
-			connection.query(query, function(err, rows){
-				query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND director LIKE '%"+rows.name+"%' ORDER BY RAND();";
-				connection.query(query, function(err, rows){
-					if(err){
-						console.log(err);
-						res.json({err: true});
-					}else{
-						if(Array.isArray(rows)){
-							res.json(rows);
-						}else{
-							console.log(rows);
-							res.json({err:true});
-						}
-					}
-				});
-			})
 		}else{
 			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director ORDER BY RAND()";
 			connection.query(query, function(err, rows){
 				if(Array.isArray(rows)){
 					if(rows.length>0){
-						query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND (genre LIKE '%"+fgenre+"%' OR director LIKE '%"+rows.name+"%');";
+						query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND (genre LIKE '%"+fgenre+"%' OR director LIKE '%"+rows[0].name+"%');";
 						connection.query(query, function(err, rows){
 							if(err){
 								console.log(err);
