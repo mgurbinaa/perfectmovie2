@@ -79,7 +79,7 @@ function getFavGenre(){
             modeMap[el]++;
         }
 
-        if(modeMap[el] > maxCount && maxCount > 4){
+        if(modeMap[el] > maxCount){
         	modeMap[el]!=maxEl ? secMax = maxEl : secMax=secMax;
             maxEl = el;
             maxCount = modeMap[el];
