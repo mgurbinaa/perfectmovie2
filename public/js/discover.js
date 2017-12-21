@@ -80,12 +80,9 @@ function getFavGenre(){
         }
 
         if(modeMap[el] >= maxCount){
-        	modeMap[el]==maxEl ? secMax = maxEl : secMax=secMax;
+        	el==maxEl ? secMax = maxEl : secMax=secMax;
             maxEl = el;
             maxCount = modeMap[el];
-        }else if(modeMap[el] == maxCount){
-        	maxEl = null;
-        	secMax = null;
         }
     }
     localStorage.setItem('fg', maxEl);
