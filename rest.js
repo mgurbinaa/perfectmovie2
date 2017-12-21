@@ -40,8 +40,10 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			var query = "SELECT COUNT(*) FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
 			connection.query(query, function(err, rows){
 				if(err){
+					console.log(err);
 					res.json(err);
 				}else{
+					console.log(rows);
 					if(Array.isArray(rows)){
 						console.log(rows[0].count+'[0]');
 						console.log(rows.count+'rows');
@@ -60,8 +62,10 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 								query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND director LIKE '%"+rows[0].name+"%' ORDER BY RAND();";
 								connection.query(query, function(err, rows){
 									if(err){
+										console.log(err);
 										res.json(err);
 									}else{
+										console.log(rows);
 										res.json(rows);	
 									}
 								});
@@ -73,6 +77,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 		}else{
 			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director ORDER BY RAND()";
 			connection.query(query, function(err, rows){
+				console.log(rows);
 				if(Array.isArray(rows)){
 						console.log(rows[0].count+'[0]f');
 						console.log(rows.count+'rowsf');
