@@ -15,7 +15,7 @@ function getPosters(){
 			var datos = JSON.parse(this.responseText);
 			console.log(datos);
 			if(!datos.err){
-				datos.length>50 ? limit = 50 : limit = datos.length;
+				datos.length>60 ? limit = 60 : limit = datos.length;
 				for(var i=0; i<limit; i++){
 					var poster = '<div class="poster">';
 					poster += "<img class='imgPoster' src='"+datos[i].image+"'>";
