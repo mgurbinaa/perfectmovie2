@@ -70,6 +70,7 @@ function getFavGenre(){
 	}
     var modeMap = {};
     var maxEl = genres[0], maxCount = 1;
+    var secMax = null;
     for(var i = 0; i < genres.length; i++){
         var el = genres[i];
         if(modeMap[el] == null){
@@ -84,6 +85,7 @@ function getFavGenre(){
             maxCount = modeMap[el];
         }else if(modeMap[el] == maxCount){
         	maxEl = null;
+        	secMax = null;
         }
     }
     localStorage.setItem('fg', maxEl);
