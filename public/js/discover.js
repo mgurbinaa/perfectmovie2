@@ -6,6 +6,7 @@ function getPosters(){
 	var user = localStorage.getItem('user');
 	var div = document.getElementById('posters');
 	var fg = localStorage.getItem('fg');
+	var f2 = localStorage.getItem('2f');
 	var r = localStorage.getItem('r');
 	var y = localStorage.getItem('y');
 	var data = new XMLHttpRequest();
@@ -30,7 +31,7 @@ function getPosters(){
 	};
 	data.open('POST', 'http://'+location.host+'/getDiscover');
 	data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	data.send('u='+user+'&g='+fg+'&r='+r+'&y='+y);
+	data.send('u='+user+'&g='+fg+'&g2='+f2+'&r='+r+'&y='+y);
 }
 
 function getLikes(){
@@ -78,13 +79,15 @@ function getFavGenre(){
         }
 
         if(modeMap[el] > maxCount){
+        	secMax = maxEl;
             maxEl = el;
             maxCount = modeMap[el];
-        }else if(modeMap[el] == maxCount || maxCount < 5){
+        }else if(modeMap[el] == maxCount){
         	maxEl = null;
         }
     }
     localStorage.setItem('fg', maxEl);
+    localStorage.setItem('2f', secMax);
 }
 
 function getMidYear(){
