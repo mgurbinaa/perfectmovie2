@@ -19,7 +19,9 @@ function getPosters(){
 					var poster = '<div class="poster">';
 					poster += "<img class='imgPoster' src='"+datos[i].image+"'>";
 					poster += "<div class='like' href='#' id='"+datos[i].idMovie+"' onclick='like("+datos[i].idMovie+")'>";
-					poster += "<img src='public/img/liked.png'><p class='textLike'>Like</p></div>";
+					poster += "<img src='public/img/liked.png'></div>";
+					poster += "<div class='share' href='#' id='"+datos[i].idMovie+"' onclick='share("+datos[i].idMovie+")'>";
+					poster += "<img src='public/img/share.png'></div>";
 					poster += "<p class='title'>"+datos[i].title+"</p>";
 					poster += "<p class='metadata'>"+datos[i].year +" | "+datos[i].genre +" | "+datos[i].rating;
 					poster +="</p></div>";
