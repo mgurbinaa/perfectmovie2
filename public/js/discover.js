@@ -89,7 +89,7 @@ function getMidRating(){
 	var sum = 0;
 	for(var i=0; i<ratings.length; i++){
 		sum+=ratings[i];
-		prom=parseInt(sum/parseInt(i+1);
+		prom=parseInt(sum/parseInt(i+1));
 	}
 	localStorage.setItem('r', prom);
 }
