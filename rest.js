@@ -43,7 +43,9 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 					res.json(err);
 				}else{
 					if(Array.isArray(rows)){
-						if(rows[0].count == 0){
+						console.log(rows[0].count+'[0]');
+						console.log(rows.count+'rows');
+						if(rows.count == 0){
 							var query = "SELECT * FROM movies ORDER BY RAND()";
 							connection.query(query, function(err, rows){
 								if(err){
@@ -72,7 +74,9 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director ORDER BY RAND()";
 			connection.query(query, function(err, rows){
 				if(Array.isArray(rows)){
-					if(rows.length>0){
+						console.log(rows[0].count+'[0]f');
+						console.log(rows.count+'rowsf');
+					if(rows[0].length>0){
 						query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND (genre LIKE '%"+fgenre+"%' OR director LIKE '%"+rows[0].name+"%');";
 						connection.query(query, function(err, rows){
 							if(err){
