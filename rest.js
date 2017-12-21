@@ -36,12 +36,12 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 	router.post("/getDiscover", function(req, res){
 		var user = req.body.u;
 		var fgen = req.body.g;
-		var year = req.body.y;
-		var rate = req.body.r;
-		var y1 = parseInt(year - 5);
-		var y2 = parseInt(year + 5);
-		var r1 = parseInt(rate - 5);
-		var r2 = parseInt(rate + 5);
+		var year = parseInt(req.body.y);
+		var rate = parseInt(req.body.r);
+		var y1 = year - 5;
+		var y2 = year + 5;
+		var r1 = rate - 5;
+		var r2 = rate + 5;
 		if(fgen=='null'){
 			console.log("fg null");
 			var query = "SELECT COUNT(*) as counted FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
