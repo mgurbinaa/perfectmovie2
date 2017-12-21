@@ -43,7 +43,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 					var query = "SELECT * FROM movies ORDER BY RAND()";
 					connection.query(query, function(err, rows){
 						if(err){
-							res.json(err});
+							res.json(err);
 						}else{
 							res.json(rows);
 						}
@@ -125,7 +125,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 						}else{
 							res.json({login: true});
 						}
-					})
+					});
 				}
 			}
 		});
