@@ -43,8 +43,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 					var query = "SELECT * FROM movies ORDER BY RAND()";
 					connection.query(query, function(err, rows){
 						if(err){
-							console.log(err);
-							res.json({err: err});
+							res.json(err});
 						}else{
 							res.json(rows);
 						}
@@ -55,8 +54,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 						query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND director LIKE '%"+rows[0].name+"%' ORDER BY RAND();";
 						connection.query(query, function(err, rows){
 							if(err){
-								console.log(err);
-								res.json({err: true});
+								res.json(err);
 							}else{
 								res.json(rows);	
 							}
@@ -72,8 +70,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 						query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND (genre LIKE '%"+fgenre+"%' OR director LIKE '%"+rows[0].name+"%');";
 						connection.query(query, function(err, rows){
 							if(err){
-								console.log(err);
-								res.json({err: true});
+								res.json(err);
 							}else{
 								res.json(rows);
 							}
@@ -82,8 +79,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 						query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND genre LIKE '%"+fgenre+"%' ORDER BY RAND();";
 						connection.query(query, function(err, rows){
 							if(err){
-								console.log(err);
-								res.json({err: true});
+								res.json(err);
 							}else{
 								res.json(rows);
 							}
