@@ -39,10 +39,7 @@ function getLikes(){
 			var datos = JSON.parse(this.responseText);
 			if(!datos.err){
 				for(var i=0; i<datos.length; i++){
-					generos = datos[i].genre.split(', ');
-					for(j=0; j<generos.length-1; j++){
-						genres.push(generos[j]);
-					}
+					genres.push(datos[i].genre);
 					var poster = '<div class="posterLiked">';
 					poster += "<img class='imgPosterLiked' src='"+datos[i].image+"'>";
 					poster +="</div>";
