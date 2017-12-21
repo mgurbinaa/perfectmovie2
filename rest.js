@@ -45,7 +45,6 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 					console.log(err);
 					res.json(err);
 				}else{
-					console.log(rows);
 					console.log(rows[0].counted+'[0]conteo likes');
 					console.log(rows.counted+'rows conteo likes');
 					if(rows[0].counted == 0){
@@ -57,7 +56,6 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 								res.json(err);
 							}else{
 								console.log("Obtiene TODAS las películas");
-								console.log(rows);
 								res.json(rows);
 							}
 						});
@@ -73,7 +71,6 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 									res.json(err);
 								}else{
 									console.log("Obtiene las películas sólo con likes");
-									console.log(rows);
 									res.json(rows);	
 								}
 							});
