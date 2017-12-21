@@ -62,8 +62,8 @@ body{
 
 
 		.like{
-			border-radius: 0px 0px 0px 10px;
-			width: 50%;
+			border-radius: 0px 0px 10px 10px;
+			width: 100%;
 			height: auto;
 			color: #AA2E85;
 			padding-left: 10px;
@@ -95,6 +95,7 @@ body{
 			border-top: none;
 			cursor: pointer;
 			float: left;
+			visibility: hidden;
 		}
 
 			.share>img{
