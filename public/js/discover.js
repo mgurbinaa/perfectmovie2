@@ -8,9 +8,9 @@ function getPosters(){
 	data.onreadystatechange = function(){
 		if((this.status == 200 || this.status == 304) && this.readyState == 4){
 			var datos = JSON.parse(this.responseText);
+			console.log(datos);
 			if(!datos.err){
 				for(var i=0; i<50; i++){
-					console.log(datos);
 					var poster = '<div class="poster">';
 					poster += "<img class='imgPoster' src='"+datos[i].image+"'>";
 					poster += "<div class='like' href='#' id='"+datos[i].idMovie+"' onclick='like("+datos[i].idMovie+")'>";
