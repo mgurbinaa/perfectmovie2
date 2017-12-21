@@ -37,7 +37,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 		var user = req.body.u;
 		var fgenre = req.body.g;
 		console.log(fgenre);
-		if(fgenre==null){
+		if(fgenre=='null'){
 			console.log("fg null");
 			var query = "SELECT COUNT(*) as counted FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
 			connection.query(query, function(err, rows){
