@@ -4,7 +4,6 @@ function getPosters(){
 	var user = localStorage.getItem('user');
 	var div = document.getElementById('posters');
 	var fg = localStorage.getItem('fg');
-	alert('http://'+location.host+'/getDiscoveru='+user+'&g='+fg);
 	var data = new XMLHttpRequest();
 	data.onreadystatechange = function(){
 		if((this.status == 200 || this.status == 304) && this.readyState == 4){

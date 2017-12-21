@@ -36,7 +36,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 	router.post("/getDiscover", function(req, res){
 		var user = req.body.u;
 		var fgenre = req.body.g;
-		if(fgenre=='null'){
+		if(fgenre==null){
 			var query = "SELECT COUNT(*) FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
 			connection.query(query, function(err, rows){
 				if(rows[0].count == 0){
@@ -44,14 +44,9 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 					connection.query(query, function(err, rows){
 						if(err){
 							console.log(err);
-							res.json({err: true});
+							res.json({err: err});
 						}else{
-							if(Array.isArray(rows)){
-								res.json(rows);
-							}else{
-								console.log(rows);
-								res.json({err:true});
-							}
+							res.json(rows);
 						}
 					});
 				}else{
@@ -63,12 +58,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 								console.log(err);
 								res.json({err: true});
 							}else{
-								if(Array.isArray(rows)){
-									res.json(rows);
-								}else{
-									console.log(rows);
-									res.json({err:true});
-								}
+								res.json(rows);	
 							}
 						});
 					})
@@ -85,12 +75,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 								console.log(err);
 								res.json({err: true});
 							}else{
-								if(Array.isArray(rows)){
-									res.json(rows);
-								}else{
-									console.log(rows);
-									res.json({err:true});
-								}
+								res.json(rows);
 							}
 						});
 					}else{
@@ -100,19 +85,13 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 								console.log(err);
 								res.json({err: true});
 							}else{
-								if(Array.isArray(rows)){
-									res.json(rows);
-								}else{
-									console.log(rows);
-									res.json({err:true});
-								}
+								res.json(rows);
 							}
 						});
 					}
 				}
 			});
 		}
-		
 	});
 	router.post("/getLikes", function(req, res){
 		var user = req.body.u;
