@@ -39,7 +39,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 		if(fgenre==null){
 			var query = "SELECT COUNT(*) FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
 			connection.query(query, function(err, rows){
-				if(count == 0){
+				if(rows.count == 0){
 					var query = "SELECT * FROM movies ORDER BY RAND()";
 					connection.query(query, function(err, rows){
 						if(err){
