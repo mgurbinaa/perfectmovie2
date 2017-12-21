@@ -63,7 +63,7 @@ body{
 
 		.like{
 			border-radius: 0px 0px 0px 10px;
-			width: calc(50%-1px);
+			width: calc(50% - 1px);
 			height: auto;
 			color: #AA2E85;
 			padding-left: 10px;
@@ -83,7 +83,7 @@ body{
 
 		.share{
 			border-radius: 0px 0px 10px 0px;
-			width: calc(50%-1px);
+			width: calc(50% - 1px);
 			height: auto;
 			color: #69AAEA;
 			padding-left: 10px;
