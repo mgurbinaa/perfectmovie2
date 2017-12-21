@@ -1,9 +1,11 @@
 var genres = [];
+var ratings = [];
 
 function getPosters(){
 	var user = localStorage.getItem('user');
 	var div = document.getElementById('posters');
 	var fg = localStorage.getItem('fg');
+	var r = localStorage.getItem('r');
 	var data = new XMLHttpRequest();
 	data.onreadystatechange = function(){
 		if((this.status == 200 || this.status == 304) && this.readyState == 4){
@@ -25,13 +27,14 @@ function getPosters(){
 	};
 	data.open('POST', 'http://'+location.host+'/getDiscover');
 	data.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	data.send('u='+user+'&g='+fg);
+	data.send('u='+user+'&g='+fg+'&r='+r);
 }
 
 function getLikes(){
 	var div = document.getElementById('likes');
 	var user = localStorage.getItem('user');
 	genres = [];
+	ratings = [];
 	var data = new XMLHttpRequest();
 	data.onreadystatechange = function(){
 		if((this.status == 200 || this.status == 304) && this.readyState == 4){
@@ -39,6 +42,7 @@ function getLikes(){
 			if(!datos.err){
 				for(var i=0; i<datos.length; i++){
 					genres.push(datos[i].genre);
+					ratings.push(datos[i].rating);
 					var poster = '<div class="posterLiked">';
 					poster += "<img class='imgPosterLiked' src='"+datos[i].image+"'>";
 					poster +="</div>";
@@ -46,6 +50,7 @@ function getLikes(){
 				}
 			}
 			getFavGenre();
+			getMidRating();
 		}
 	};
 	data.open('POST', 'http://'+location.host+'/getLikes');
@@ -66,7 +71,7 @@ function getFavGenre(){
         }else{
             modeMap[el]++;
         }
-        
+
         if(modeMap[el] > maxCount){
             maxEl = el;
             maxCount = modeMap[el];
@@ -75,6 +80,18 @@ function getFavGenre(){
         }
     }
     localStorage.setItem('fg', maxEl);
+}
+
+function getMidRating(){
+	if(ratings.length==0){
+		return null;
+	}
+	var sum = 0;
+	for(var i=0; i<ratings.length; i++){
+		sum+=ratings[i];
+		prom=parseInt(sum/i);
+	}
+	localStorage.setItem('r', prom);
 }
 
 function load(){
