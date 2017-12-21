@@ -83,8 +83,8 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 			var query = "SELECT count(l.director) as counted, l.director as director, p.name as name from likes l inner join people p on l.director = p.idPerson where l.user = (select idUser from users where id = '"+user+"') group by director ORDER BY RAND()";
 			connection.query(query, function(err, rows){
 				console.log(rows);
-				console.log(rows[0].count+'[0]f');
-				console.log(rows.count+'rowsf');
+				console.log(rows[0].counted+'[0]f');
+				console.log(rows.counted+'rowsf');
 				if(rows[0].length>0){
 					query = "SELECT title, image, idMovie, director, genre, year, rating FROM movies WHERE idMovie NOT IN (SELECT movie FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"')) AND (genre LIKE '%"+fgenre+"%' OR director LIKE '%"+rows[0].name+"%');";
 					connection.query(query, function(err, rows){
@@ -161,7 +161,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 				res.json({err: true});
 			}else{
 				if(Array.isArray(rows)){
-					var dir = rows[0].director.split(',');
+					var dir = rows[0].director;
 					query = "SELECT * FROM users WHERE id='"+user+"';";
 					console.log(query);
 					connection.query(query, function(err, rows){
@@ -171,17 +171,17 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 						}else{
 							if(Array.isArray(rows)){
 								var us = rows[0].idUser;
-								query = "INSERT INTO likes(movie, user, director) SELECT "+movie+", "+us+", idPerson FROM people WHERE name = '"+dir[0]+"';";
+								query = "INSERT INTO likes(movie, user, director) SELECT "+movie+", "+us+", idPerson FROM people WHERE name = '"+dir+"';";
 								console.log(query);
 								connection.query(query, function(err, rows){
 									if(err){
-										query = "INSERT INTO people(name) VALUES('"+dir[0]+"');";
+										query = "INSERT INTO people(name) VALUES('"+dir+"');";
 										connection.query(query, function(err, rows){
 											if(err){
 												console.log(err);
 												res.json({err: true});
 											}else{
-												query = "INSERT INTO likes(movie, user, director) SELECT "+movie+", "+us+", idPerson FROM people WHERE name = '"+dir[0]+"';";
+												query = "INSERT INTO likes(movie, user, director) SELECT "+movie+", "+us+", idPerson FROM people WHERE name = '"+dir+"';";
 												console.log(query);
 												connection.query(query, function(err, rows){
 													if(err){
