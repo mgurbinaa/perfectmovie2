@@ -34,9 +34,7 @@ function entrar(){
 	    data.onreadystatechange = function(){
 	      	if(this.status == 200 && this.readyState == 4){
 	          	var datos = JSON.parse(this.responseText);
-	          	if(!datos.err){
-	            	location.assign('http://'+location.host+'/discover')
-	          	}
+	            location.assign('http://'+location.host+'/discover');
 	        }
 	    };
 	    data.open('POST', 'http://'+location.host+'/login');
