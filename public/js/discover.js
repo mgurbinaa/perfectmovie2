@@ -1,5 +1,6 @@
 var genres = [];
 var ratings = [];
+var years = [];
 
 function getPosters(){
 	var user = localStorage.getItem('user');
@@ -12,7 +13,8 @@ function getPosters(){
 			var datos = JSON.parse(this.responseText);
 			console.log(datos);
 			if(!datos.err){
-				for(var i=0; i<50; i++){
+				datos.length>50 ? limit = 50 : limit = datos.length;
+				for(var i=0; i<limit; i++){
 					var poster = '<div class="poster">';
 					poster += "<img class='imgPoster' src='"+datos[i].image+"'>";
 					poster += "<div class='like' href='#' id='"+datos[i].idMovie+"' onclick='like("+datos[i].idMovie+")'>";
@@ -43,6 +45,7 @@ function getLikes(){
 				for(var i=0; i<datos.length; i++){
 					genres.push(datos[i].genre);
 					ratings.push(datos[i].rating);
+					years.push(datos[i].year);
 					var poster = '<div class="posterLiked">';
 					poster += "<img class='imgPosterLiked' src='"+datos[i].image+"'>";
 					poster +="</div>";
@@ -51,6 +54,7 @@ function getLikes(){
 			}
 			getFavGenre();
 			getMidRating();
+			getMidYear();
 		}
 	};
 	data.open('POST', 'http://'+location.host+'/getLikes');
@@ -80,6 +84,18 @@ function getFavGenre(){
         }
     }
     localStorage.setItem('fg', maxEl);
+}
+
+function getMidYear(){
+	if(years.length==0){
+		return null;
+	}
+	var sum = 0;
+	for(var i=0; i<years.length; i++){
+		sum+=years[i];
+		prom=parseInt(sum/parseInt(i+1));
+	}
+	localStorage.setItem('y', prom);
 }
 
 function getMidRating(){

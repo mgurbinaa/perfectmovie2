@@ -36,6 +36,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 	router.post("/getDiscover", function(req, res){
 		var user = req.body.u;
 		var fgenre = req.body.g;
+		if
 		if(fgenre=='null'){
 			console.log("fg null");
 			var query = "SELECT COUNT(*) as counted FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
@@ -125,7 +126,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 					var query = "INSERT INTO users(id, name) VALUES('"+user+"', '"+name+"');";
 					connection.query(query, function(err, rows){
 						if(err){
-							res.json({login: true});
+							res.json({err: true});
 						}else{
 							res.json({login: true});
 						}
