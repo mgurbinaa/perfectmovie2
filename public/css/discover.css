@@ -45,6 +45,26 @@ body{
 	float: left;
 }
 
+
+
+	.tituloPosters{
+		height: 50px;
+		width: 100%;
+		background: linear-gradient(to right, #BB0009, #622124);
+	}
+
+		.tituloPosters>h1{
+			color: rgba(200,200,200,.9);
+			font-size: 4vh;
+			text-align: center;
+		}
+
+		.tituloPosters>p{
+			color: rgba(220, 220, 200, .9);
+			font-size: 2vh;
+			text-align: center;
+		}
+
 	.poster{
 		height: 320px;
 		width: 130px;
