@@ -72,7 +72,9 @@ body{
 			padding-bottom: 4px;
 			border: 1px solid #AA2E85;
 			border-top: none;
+			border-right: none;
 			cursor: pointer;
+			float: left;
 		}
 
 			.like>img{
@@ -92,7 +94,9 @@ body{
 			padding-bottom: 4px;
 			border: 1px solid #69AAEA;
 			border-top: none;
+			border-left: none;
 			cursor: pointer;
+			float: left;
 		}
 
 			.share>img{
