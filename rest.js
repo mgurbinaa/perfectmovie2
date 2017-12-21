@@ -38,7 +38,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 		var fgenre = req.body.g;
 		if(fgenre=='null'){
 			console.log("fg null");
-			var query = "SELECT COUNT(*) FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
+			var query = "SELECT COUNT(*) as counted FROM likes WHERE user = (SELECT idUser FROM users WHERE id = '"+user+"');";
 			connection.query(query, function(err, rows){
 				if(err){
 					console.log("Error al contar likes");
@@ -46,9 +46,9 @@ REST_ROUTER.prototype.handleRoutes = function(router, connection, md5) {
 					res.json(err);
 				}else{
 					console.log(rows);
-					console.log(rows[0].count+'[0]conteo likes');
-					console.log(rows.count+'rows conteo likes');
-					if(rows[0].count == 0){
+					console.log(rows[0].counted+'[0]conteo likes');
+					console.log(rows.counted+'rows conteo likes');
+					if(rows[0].counted == 0){
 						var query = "SELECT * FROM movies ORDER BY RAND()";
 						connection.query(query, function(err, rows){
 							if(err){
